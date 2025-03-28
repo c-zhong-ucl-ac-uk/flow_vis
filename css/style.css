@@ -1,0 +1,326 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#map {
+    position: fixed;
+    top: 0;
+    left: 360px;
+    width: calc(100% - 360px);
+    height: 100%;
+    z-index: 1;
+    transition: left 0.1s ease, width 0.1s ease;
+}
+
+#map.sidebar-collapsed {
+    left: 0;
+    width: 100%;
+}
+
+#legend {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.floating-info {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: calc(100% - 20px);
+    margin: 10px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    cursor: move;
+}
+
+.info-header {
+    padding: 8px;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #ccc;
+    border-radius: 4px 4px 0 0;
+    font-weight: bold;
+    cursor: move;
+    user-select: none;
+}
+
+.info-content {
+    padding: 10px;
+}
+
+.info-id {
+    color: #666;
+    font-size: 0.9em;
+    margin-bottom: 4px;
+}
+
+.info-name {
+    font-weight: bold;
+    margin-bottom: 4px;
+    color: #333;
+}
+
+.info-data {
+    color: #444;
+}
+
+.flow-summary {
+    margin-top: 8px;
+}
+
+.flow-summary>div {
+    margin-bottom: 4px;
+}
+
+.flow-summary .label {
+    color: #666;
+    display: inline-block;
+    width: 85px;
+}
+
+.flow-summary .value {
+    font-weight: bold;
+    margin-right: 4px;
+}
+
+.flow-summary .count {
+    color: #888;
+    font-size: 0.9em;
+}
+
+.flow-summary .net-flow .value {
+    color: #666;
+}
+
+.flow-summary .net-flow .value.positive {
+    color: #2ecc71;
+}
+
+.flow-summary .net-flow .value.negative {
+    color: #e74c3c;
+}
+
+#osm-map-container {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: calc(100% - 20px);
+    margin: 10px;
+    height: 320px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.osm-header {
+    padding: 8px;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #ccc;
+    border-radius: 4px 4px 0 0;
+    font-weight: bold;
+    cursor: move;
+    user-select: none;
+}
+
+#osm-map {
+    width: 100%;
+    height: calc(100% - 33px);
+    border-radius: 0 0 4px 4px;
+}
+
+
+/* Add new styles for the sidebar */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 360px;
+    /* Initial width */
+    background: white;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+}
+
+.sidebar.collapsed {
+    transform: translateX(-100%);
+}
+
+.sidebar-resizer {
+    position: absolute;
+    right: -5px;
+    top: 0;
+    width: 10px;
+    height: 100%;
+    background: transparent;
+    cursor: ew-resize;
+    z-index: 1001;
+}
+
+.sidebar-toggle {
+    position: absolute;
+    right: -22px;
+    top: 50%;
+    width: 20px;
+    height: 40px;
+    background: white;
+    border: 1px solid #ccc;
+    border-left: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-toggle::after {
+    content: "◀";
+    font-size: 10px;
+}
+
+.sidebar.collapsed .sidebar-toggle::after {
+    content: "▶";
+}
+
+
+/* MSOA控制开关样式 */
+
+.msoa-control {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.msoa-control-header {
+    padding: 8px 12px;
+    background: #f5f5f5;
+    border-bottom: 1px solid #ccc;
+    font-weight: bold;
+    border-radius: 4px 4px 0 0;
+}
+
+.msoa-control-content {
+    padding: 12px;
+}
+
+.control-item {
+    display: flex;
+    align-items: center;
+}
+
+
+/* 修改现有的 toggle switch 样式 */
+
+.toggle-switch {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.toggle-switch input {
+    display: none;
+}
+
+.toggle-slider {
+    position: relative;
+    width: 40px;
+    height: 20px;
+    background-color: #ccc;
+    border-radius: 20px;
+    margin-right: 8px;
+    transition: background-color 0.2s;
+}
+
+.toggle-slider:before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: white;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.2s;
+}
+
+.toggle-switch input:checked+.toggle-slider {
+    background-color: #2196F3;
+}
+
+.toggle-switch input:checked+.toggle-slider:before {
+    transform: translateX(20px);
+}
+
+.toggle-label {
+    font-size: 14px;
+    color: #333;
+}
+
+
+/* 操作说明框样式 */
+
+.instructions {
+    position: relative;
+    width: calc(100% - 20px);
+    margin: 10px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.instructions-header {
+    padding: 8px;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #ccc;
+    border-radius: 4px 4px 0 0;
+    font-weight: bold;
+    user-select: none;
+}
+
+.instructions-content {
+    padding: 10px;
+    font-size: 14px;
+    color: #444;
+}
+
+.instructions-content ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.instructions-content li {
+    margin-bottom: 8px;
+}
+
+.key-instruction {
+    display: inline-block;
+    padding: 2px 6px;
+    background: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-family: monospace;
+    margin: 0 2px;
+}

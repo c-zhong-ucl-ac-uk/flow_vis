@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Connected Places Visualization</title>
+    <!-- 加载 D3.js -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <!-- 加载 TopoJSON -->
+    <script src="https://unpkg.com/topojson-client@3"></script>
+    <!-- 添加 CSS 文件引用 -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.8.0/proj4.js"></script>
+</head>
+
+<body>
+    <div id="location-info" class="floating-info">
+        <div class="info-header">Location Details</div>
+        <div class="info-content">
+            <div class="info-id">&nbsp;</div>
+            <div class="info-name">Hover over a region</div>
+            <div class="info-data">to see flow details</div>
+        </div>
+    </div>
+    <div id="map"></div>
+    <div id="legend"></div>
+    <!-- <script src="js/d3test.js"></script> -->
+    <script src="js/london.js"></script>
+    <div id="osm-map-container">
+        <div class="osm-header">OpenStreetMap View</div>
+        <div id="osm-map"></div>
+    </div>
+</body>
+
+</html>

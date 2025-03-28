@@ -1,0 +1,4 @@
+.DS_Store
+nyt_vis/
+data/lsoa_london_21.geojson
+data/flows.geojson
